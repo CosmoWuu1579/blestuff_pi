@@ -114,9 +114,9 @@ if __name__ == "__main__":
         plt.ion()
         # freq_hz = 50000000  # 50MHz
 
-        fStart = 1000000
-        fStop = 2000000
-        numSteps = 100
+        fStart = 1e6
+        fStop = 3e9
+        numSteps = 200
 
         print("miniVNA Tiny is going to initialize")
         m_vna = miniVNATiny()
@@ -185,12 +185,12 @@ if __name__ == "__main__":
         # Assuming 'block' is an instance of VNACalibratedSampleBlock or similar
         samples = calSamples.getCalibratedSamples()
         frequencies = [sample.getFrequency() for sample in samples if sample is not None]
-        print(frequencies)
+        # print(frequencies)
         # sv_vna_data = SaveVar()
         np_frequencies = np.array(frequencies)
         calSamples.getCalibratedSamples()
-        print(calSamples.get_all_mmRL_values())
-        print(calSamples.get_all_mmRLPHASE_values())
+        # print(calSamples.get_all_mmRL_values())
+        # print(calSamples.get_all_mmRLPHASE_values())
 
         now = datetime.now()
         # Format as string suitable for filename, e.g., "2025-06-02_23-20-00"

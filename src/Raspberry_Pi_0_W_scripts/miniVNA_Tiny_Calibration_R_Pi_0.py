@@ -1791,12 +1791,12 @@ if __name__ == '__main__':
     # Assuming 'block' is an instance of VNACalibratedSampleBlock or similar
     samples = calSamples.getCalibratedSamples()
     frequencies = [sample.getFrequency() for sample in samples if sample is not None]
-    print(frequencies)
+    # print(frequencies)
     # sv_vna_data = SaveVar()
     np_frequencies = np.array(frequencies)
     calSamples.getCalibratedSamples()
-    print(calSamples.get_all_mmRL_values())
-    print(calSamples.get_all_mmRLPHASE_values())
+    # print(calSamples.get_all_mmRL_values())
+    # print(calSamples.get_all_mmRLPHASE_values())
 
     now = datetime.now()
     # Format as string suitable for filename, e.g., "2025-06-02_23-20-00"
@@ -1809,7 +1809,7 @@ if __name__ == '__main__':
         "RL": calSamples.get_all_mmRL_values(),
         "RLPHASE": calSamples.get_all_mmRLPHASE_values()
     }
-    print(vna_output_data["frequencies"])
+    # print(vna_output_data["frequencies"])
     #print(f"vna_output_data[RL]: {vna_output_data["RL"]}")
     #print(f"vna_output_data[RLPHASE]: {vna_output_data["RLPHASE"]}")
     # Save the data dictionary to a JSON file
