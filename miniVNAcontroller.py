@@ -111,12 +111,30 @@ if __name__ == "__main__":
         # controller.sweep_to_json(start_freq=1e6, stop_freq=30e6, num_steps=201)
 
 
-        plt.ion()
+        # plt.ion()
         # freq_hz = 50000000  # 50MHz
 
-        fStart = 1e6
-        fStop = 1e9
-        numSteps = 200
+        server_address = "FC:01:7C:92:05:6C"  # PC Bluetooth MAC address - FC-01-7C-92-05-6C
+        port = 4
+
+
+        sock = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+        sock.connect((server_address, port))
+        print("Connected to server.")
+
+        # Step 1: Receive scan command from PC
+        cmd_data = sock.recv(1024)
+        scan_cmd = json.loads(cmd_data.decode('utf-8'))
+        print("Received scan command:", scan_cmd)
+
+        # Step 2: Use these parameters:
+        fStart = scan_cmd.get("start_freq", 1e6)
+        fStop = scan_cmd.get("stop_freq", 1e9)
+        numSteps = scan_cmd.get("num_steps", 200)
+
+        # fStart = 1e6
+        # fStop = 1e9
+        # numSteps = 200
 
         print("miniVNA Tiny is going to initialize")
         m_vna = miniVNATiny()
@@ -238,8 +256,8 @@ if __name__ == "__main__":
                 plt.show()
 
         # plt.show()
-        server_address = "FC:01:7C:92:05:6C"  # PC Bluetooth MAC address - FC-01-7C-92-05-6C
-        port = 4
+        # server_address = "FC:01:7C:92:05:6C"  # PC Bluetooth MAC address - FC-01-7C-92-05-6C
+        # port = 4
 
         try:
                 print(f"Attempting to connect to Bluetooth server at {server_address}:{port}")
