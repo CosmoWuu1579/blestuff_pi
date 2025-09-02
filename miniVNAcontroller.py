@@ -112,7 +112,11 @@ if __name__ == "__main__":
 
 
         plt.ion()
-        freq_hz = 50000000  # 50MHz
+        # freq_hz = 50000000  # 50MHz
+
+        fStart = 1000000
+        fStop = 2000000
+        numSteps = 100
 
         print("miniVNA Tiny is going to initialize")
         m_vna = miniVNATiny()
@@ -162,11 +166,11 @@ if __name__ == "__main__":
         # sv1.append_named_json_object(mainCalibrationBlock, name="mainCalibrationBlock")
 
         # VNACalibrationBlock
-        rcb = m_vna.createResizedCalibrationBlock(mainCalibrationBlock, fStart=1000000, fStop=2000000, numSteps=100,
+        rcb = m_vna.createResizedCalibrationBlock(mainCalibrationBlock, fStart=fStart, fStop=fStop, numSteps=numSteps,
                                               scanMode="REFL")
         time.sleep(1)
 
-        data = m_vna.scan_reflection_mode_new(start_freq=1000000, stop_freq=2000000, num_freq_sample=100)
+        data = m_vna.scan_reflection_mode_new(start_freq=fStart, stop_freq=fStop, num_freq_sample=numSteps)
         # sv1.append_named_json_object(data, name="data")
 
         context = m_vna.createCalibrationContextForCalibratedSamples(rcb)
