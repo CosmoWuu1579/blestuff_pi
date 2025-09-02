@@ -215,7 +215,7 @@ if __name__ == "__main__":
         # Format as string suitable for filename, e.g., "2025-06-02_23-20-00"
         file_name_time_str = now.strftime("%Y-%m-%d_%H-%M-%S")
         # Create filename with extension
-        file_name_vna_output = f"vna_data_{file_name_time_str}.json"
+        file_name_vna_output = f"data/vna_data_{file_name_time_str}.json"
 
         vna_output_data = {
                 "frequencies": frequencies,
