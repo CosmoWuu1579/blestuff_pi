@@ -1,3 +1,7 @@
+import socket
+import json
+from datetime import datetime
+from miniVNA import miniVNATiny, VNACalibrationBlock
 
 
 class MiniVNAController:
@@ -79,3 +83,17 @@ class MiniVNAController:
         json_path, _ = self.sweep_to_json(start_freq, stop_freq, num_steps)
         print(f"Sending JSON file: {json_path}")
         self.send_json(json_path)
+
+
+
+if __name__ == "__main__":
+    
+    controller = MiniVNAController(
+        bt_mac="FC:01:7C:92:05:6C",
+        bt_port=4,
+        calibration_file="./REFL_miniVNATiny.cal",
+        serial_port='/dev/ttyUSB0',
+        baud_rate=921600
+    )
+    
+    controller.sweep_to_json(start_freq=1e6, stop_freq=30e6, num_steps=201)
