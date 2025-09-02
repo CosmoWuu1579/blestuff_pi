@@ -1146,7 +1146,7 @@ class miniVNATiny:
         time.sleep(0.1)
         self.send_command("")
         self.receive_byte_stream(start_freq, stop_freq, num_freq_sample)
-        print(f"scan_reflection_mode: {self.data_samples}")
+        # print(f"scan_reflection_mode: {self.data_samples}")
         self.plot_samples_db()
         # self.data_samples = []
 
@@ -1165,7 +1165,7 @@ class miniVNATiny:
         time.sleep(0.1)
         self.send_command("")
         self.receive_byte_stream(start_freq, stop_freq, num_freq_sample)
-        print(f"scan_reflection_mode: {self.data_samples}")
+        # print(f"scan_reflection_mode: {self.data_samples}")
         # self.plot_samples_db()
         rc.setSamples(self.data_samples)
         rc.setScanMode(2)  # self.scanMode
