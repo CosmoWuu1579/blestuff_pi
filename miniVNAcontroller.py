@@ -115,7 +115,7 @@ if __name__ == "__main__":
         # freq_hz = 50000000  # 50MHz
 
         fStart = 1e6
-        fStop = 3e9
+        fStop = 1e9
         numSteps = 200
 
         print("miniVNA Tiny is going to initialize")
@@ -140,7 +140,8 @@ if __name__ == "__main__":
         # m_vna.scan_reflection_mode(start_freq = 1000000, stop_freq = 2000000 , num_freq_sample = 100)
 
         # Load calibration data
-        file_name = rf"src/Raspberry_Pi_0_W_scripts/REFL_miniVNATiny.cal"
+        # file_name = rf"src/Raspberry_Pi_0_W_scripts/REFL_miniVNATiny.cal"
+        file_name = rf"src/REFL_miniVNA_Tiny_7000cal_3ovrscn.cal"
         calBlock = m_vna.loadCalibrationRAWData(file_name)
 
         # Check if calibration data was loaded successfully
@@ -204,7 +205,7 @@ if __name__ == "__main__":
                 "RLPHASE": calSamples.get_all_mmRLPHASE_values()
         }
         
-        print(vna_output_data["frequencies"])
+        # print(vna_output_data["frequencies"])
         #print(f"vna_output_data[RL]: {vna_output_data["RL"]}")
         #print(f"vna_output_data[RLPHASE]: {vna_output_data["RLPHASE"]}")
         # Save the data dictionary to a JSON file

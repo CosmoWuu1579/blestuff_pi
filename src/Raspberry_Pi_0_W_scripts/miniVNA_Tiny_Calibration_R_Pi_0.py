@@ -162,15 +162,27 @@ class VNABaseSample:
             self.rss1 = obj_copy_list[0].rss1
             self.rss2 = obj_copy_list[0].rss2
             self.rss3 = obj_copy_list[0].rss3
-            self.hasPData = obj_copy_list[0].hasPData
-            self.p1 = obj_copy_list[0].p1
-            self.p2 = obj_copy_list[0].p2
-            self.p3 = obj_copy_list[0].p3
-            self.p4 = obj_copy_list[0].p4
-            self.p1Ref = obj_copy_list[0].p1Ref
-            self.p2Ref = obj_copy_list[0].p2Ref
-            self.p3Ref = obj_copy_list[0].p3Ref
-            self.p4Ref = obj_copy_list[0].p4Ref
+            # self.hasPData = obj_copy_list[0].hasPData
+            self.hasPData = False
+            # self.p1 = obj_copy_list[0].p1
+            # self.p2 = obj_copy_list[0].p2
+            # self.p3 = obj_copy_list[0].p3
+            # self.p4 = obj_copy_list[0].p4
+            
+            self.p1 = 0
+            self.p2 = 0
+            self.p3 = 0
+            self.p4 = 0
+            
+            # self.p1Ref = obj_copy_list[0].p1Ref
+            # self.p2Ref = obj_copy_list[0].p2Ref
+            # self.p3Ref = obj_copy_list[0].p3Ref
+            # self.p4Ref = obj_copy_list[0].p4Ref
+            self.p1Ref = 0
+            self.p2Ref = 0
+            self.p3Ref = 0
+            self.p4Ref = 0
+            
         elif isinstance(obj_copy, dict):
             # Copy constructor: copy attributes from another VNABaseSample
             self.angle = obj_copy['angle']
