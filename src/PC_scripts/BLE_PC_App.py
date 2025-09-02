@@ -2,7 +2,7 @@ import numpy as np
 import json
 import socket
 from matplotlib import pyplot as plt
-local_bt_addr = "00:1A:7D:DA:71:13"  # Your PC's Bluetooth MAC address
+local_bt_addr = "FC:01:7C:92:05:6C"  # Your PC's Bluetooth MAC address - FC-01-7C-92-05-6C
 port = 4
 
 server_sock = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)

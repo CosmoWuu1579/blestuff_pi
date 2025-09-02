@@ -238,7 +238,7 @@ if __name__ == "__main__":
                 plt.show()
 
         # plt.show()
-        server_address = "FC:01:7C:92:05:6C"  # PC Bluetooth MAC address
+        server_address = "FC:01:7C:92:05:6C"  # PC Bluetooth MAC address - FC-01-7C-92-05-6C
         port = 4
 
         try:
