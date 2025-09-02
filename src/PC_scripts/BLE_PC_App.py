@@ -36,6 +36,7 @@ filename_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 # Now receive the data (same as your current logic):
 local_data = r'C:\Users\joesc\git\telemetry\data'
+os.makedirs(local_data, exist_ok=True)
 
 filename = f"received_data_{filename_time}.json"
 
