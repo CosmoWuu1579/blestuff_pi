@@ -993,8 +993,8 @@ class miniVNATiny:
     # ------------------------------------------------------
     def receive_byte_stream(self, start_freq, stop_freq, num_freq_sample):
         # Testing with sweep range
-        start_freq = 1000000
-        stop_freq = 100000000
+        # start_freq = 1000000
+        # stop_freq = 100000000
 
         print("Start Frequency:%s",start_freq)
         print("Stop Frequency:%s",stop_freq)
