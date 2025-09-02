@@ -233,7 +233,7 @@ if __name__ == "__main__":
         system = platform.system()  # 'Windows', 'Linux', 'Darwin', etc.
         print(system)
 
-        if system == "Linux":
+        if system == "Windows":
                 fig, ax = plt.subplots(2, 1, figsize=(10, 6))
                 ax[0].plot(np_frequencies / 1e6, calSamples.get_all_mmRL_values(), marker='o', linestyle='-', color='b')
                 ax[0].set_title('Reflection Loss (dB)')
@@ -252,7 +252,7 @@ if __name__ == "__main__":
                 plt.tight_layout()
                 plt.ioff()
                 plt.draw()
-                plt.savefig(file_name[:-4] + ".png")
+                # plt.savefig(file_name[:-4] + ".png")
                 plt.show()
 
         # plt.show()
@@ -261,9 +261,9 @@ if __name__ == "__main__":
 
         try:
                 print(f"Attempting to connect to Bluetooth server at {server_address}:{port}")
-                sock = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
-                sock.settimeout(10)  # 10 second timeout
-                sock.connect((server_address, port))
+                # sock = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+                # sock.settimeout(10)  # 10 second timeout
+                # sock.connect((server_address, port))
 
                 print("Bluetooth connection established, sending file...")
                 with open(file_name_vna_output, "rb") as f:
