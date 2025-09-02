@@ -1,6 +1,9 @@
 import numpy as np
 import json
+import os
 import socket
+import time
+from datetime import datetime
 from matplotlib import pyplot as plt
 local_bt_addr = "FC:01:7C:92:05:6C"  # Your PC's Bluetooth MAC address - FC-01-7C-92-05-6C
 port = 4
@@ -26,10 +29,17 @@ scan_cmd = {
     "stop_freq": f_stop,
     "num_steps": num_steps
 }
+start_time = time.time()
 client_sock.sendall(json.dumps(scan_cmd).encode('utf-8'))  # Send command
 
+filename_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
 # Now receive the data (same as your current logic):
-output_filename = "received_data.json"
+local_data = r'C:\Users\joesc\git\telemetry\data'
+
+filename = f"received_data_{filename_time}.json"
+
+output_filename = os.path.join(local_data, filename)
 with open(output_filename, "wb") as f:
     try:
         while True:
@@ -46,6 +56,9 @@ with open(output_filename, "wb") as f:
 print(f"File received and saved as {output_filename}")
 client_sock.close()
 server_sock.close()
+
+endtime = time.time()
+print(f"Total time taken: {endtime - start_time} seconds")
 
 
 
@@ -78,7 +91,7 @@ server_sock.close()
 # client_sock.close()
 # server_sock.close()
 
-with open('received_data.json', 'r') as jsonFile:
+with open(f'{output_filename}', 'r') as jsonFile:
     data = json.load(jsonFile)
 
 fig,ax = plt.subplots(2, 1, figsize=(10, 6),num = 1)
