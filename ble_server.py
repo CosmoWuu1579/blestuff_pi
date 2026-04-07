@@ -51,7 +51,7 @@ def write_request(characteristic: BlessGATTCharacteristic, value: Any, **kwargs)
     characteristic.value = value
 
 
-FILENAME = "vna_data_2025-07-07_00-56-41.json"
+FILENAME = "data/vna_data_2025-09-02_15-36-47.json"
 
 def collect_data() -> dict:
     send_file(FILENAME)
