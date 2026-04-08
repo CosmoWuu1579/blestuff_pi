@@ -25,7 +25,7 @@ import threading
 from typing import Any, Dict, Optional, Union
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(_HERE, "..", "src", "Raspberry_Pi_0_W_scripts"))
+sys.path.insert(0, os.path.join(_HERE, "src", "Raspberry_Pi_0_W_scripts"))
 try:
     from BLE_R_Pi_0_App import send_file
 except Exception as e:
