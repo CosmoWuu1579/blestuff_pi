@@ -45,6 +45,8 @@ CHAR_UUID    = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 
 # ── How often to send data (seconds) ─────────────────────────────────────────
 SEND_INTERVAL = 2.0
+CHUNK_SIZE = 180  # safe under typical negotiated MTU
+EOM = b"\x04"     # end-of-message marker
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -95,13 +97,17 @@ async def run():
             await asyncio.sleep(SEND_INTERVAL)
 
             data  = collect_data()
-            payload = json.dumps(data)              # dict → JSON string
-            raw     = payload.encode("utf-8")       # string → bytes
+            raw   = json.dumps(data).encode("utf-8")
+            logger.info(f"Sending {len(raw)} bytes in {(len(raw)//CHUNK_SIZE)+1} chunks")
 
-            logger.info(f"Sending: {payload}")
+            char = server.get_characteristic(CHAR_UUID)
+            for i in range(0, len(raw), CHUNK_SIZE):
+                char.value = bytearray(raw[i:i+CHUNK_SIZE])
+                server.update_value(SERVICE_UUID, CHAR_UUID)
+                await asyncio.sleep(0.02)  # let the radio drain
 
-            # Write the bytes to the characteristic and notify all subscribers
-            server.get_characteristic(CHAR_UUID).value = bytearray(raw)
+            # end-of-message marker so the app knows the blob is complete
+            char.value = bytearray(EOM)
             server.update_value(SERVICE_UUID, CHAR_UUID)
 
     except KeyboardInterrupt:
