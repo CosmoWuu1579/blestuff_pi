@@ -21,5 +21,5 @@ def send_file(filename):
     # print("Socket closed on client side")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  
     send_file("data/vna_data_2025-09-02_15-36-47.json")

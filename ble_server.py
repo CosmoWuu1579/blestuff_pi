@@ -19,12 +19,18 @@ Run with:  sudo python3 ble_server.py
 import asyncio
 import json
 import logging
+import os
 import sys
 import threading
 from typing import Any, Dict, Optional, Union
 
-sys.path.insert(0, "src/Raspberry_Pi_0_W_scripts")
-from BLE_R_Pi_0_App import send_file
+_HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(_HERE, "..", "src", "Raspberry_Pi_0_W_scripts"))
+try:
+    from BLE_R_Pi_0_App import send_file
+except Exception as e:
+    logging.warning(f"Could not import send_file: {e}")
+    def send_file(_): pass
 
 from bless import (
     BlessServer,
